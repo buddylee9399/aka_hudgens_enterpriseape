@@ -87,3 +87,5 @@ end
   gem 'name_of_person'
 
   gem "rolify"
+
+  gem "pundit"
