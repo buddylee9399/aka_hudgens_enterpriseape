@@ -85,3 +85,5 @@ end
   gem "devise"
 
   gem 'name_of_person'
+
+  gem "rolify"
