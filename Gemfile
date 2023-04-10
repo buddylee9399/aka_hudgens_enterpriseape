@@ -83,3 +83,5 @@ end
   gem "simple_form"
 
   gem "devise"
+
+  gem 'name_of_person'
