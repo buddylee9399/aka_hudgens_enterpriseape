@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Employees</h1>
 
-<div id="employees">
-  <% @employees.each do |employee| %>
-    <%= render employee %>
-    <p>
-      <%= link_to "Show this employee", employee %>
-    </p>
-  <% end %>
-</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Job type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to "New employee", new_employee_path %>
+  <tbody>
+    <%= render @employees %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>

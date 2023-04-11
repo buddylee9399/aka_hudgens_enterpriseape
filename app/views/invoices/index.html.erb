@@ -1,14 +1,35 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Invoices</h1>
-
-<div id="invoices">
-  <% @invoices.each do |invoice| %>
-    <%= render invoice %>
-    <p>
-      <%= link_to "Show this invoice", invoice %>
-    </p>
-  <% end %>
+<div class="row">
+  <h1>Listing Invoices</h1>
+  <div class="pull-right range-query">
+    <%= form_tag invoices_path, method: :get do %>
+      <%= text_field_tag 'search[date_from]', @search.date_from %>
+      <%= text_field_tag 'search[date_to]', @search.date_to %>
+      <%= submit_tag 'Search', class: 'btn btn-secondary search-button' %>
+    <% end %>
+    <%= link_to 'New Invoice', new_invoice_path, class: 'btn btn-primary' %>
+  </div>
 </div>
 
-<%= link_to "New invoice", new_invoice_path %>
+<div class="media">
+  <div class="media-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Company</th>
+          <th>Tax</th>
+          <th>Salesperson</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= render @invoices %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+

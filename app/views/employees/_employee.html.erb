@@ -1,17 +1,8 @@
-<div id="<%= dom_id employee %>">
-  <p>
-    <strong>Name:</strong>
-    <%= employee.name %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= employee.phone %>
-  </p>
-
-  <p>
-    <strong>Job type:</strong>
-    <%= employee.job_type %>
-  </p>
-
-</div>
+<tr>
+  <td><%= employee.name %></td>
+  <td><%= employee.phone %></td>
+  <td><%= employee.job_type %></td>
+  <td><%= link_to 'Show', employee %></td>
+  <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+  <td><%= button_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

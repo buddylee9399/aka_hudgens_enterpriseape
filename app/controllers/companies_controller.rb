@@ -4,6 +4,12 @@ class CompaniesController < ApplicationController
   # GET /companies or /companies.json
   def index
     @companies = Company.all
+
+    # for the export
+    respond_to do |format|
+      format.html
+      format.csv { send_data @companies.to_csv, filename: "companies-#{Date.today}.csv" }
+    end      
   end
 
   # GET /companies/1 or /companies/1.json
@@ -57,7 +63,7 @@ class CompaniesController < ApplicationController
     end
   end
   def import
-    binding.irb
+    # binding.irb
     Company.import(params[:file])
     redirect_to companies_path, notice: "Companies Added Successfully"
   end  

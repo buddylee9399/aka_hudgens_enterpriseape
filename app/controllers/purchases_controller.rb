@@ -1,14 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: %i[ show edit update destroy ]
-
-  # GET /purchases or /purchases.json
-  def index
-    @purchases = Purchase.all
-  end
-
-  # GET /purchases/1 or /purchases/1.json
-  def show
-  end
+  before_action :set_purchase, only: %i[ edit update destroy ]
+  before_action :set_invoice
 
   # GET /purchases/new
   def new
@@ -22,11 +14,11 @@ class PurchasesController < ApplicationController
   # POST /purchases or /purchases.json
   def create
     @purchase = Purchase.new(purchase_params)
-
+    @purchase.invoice = @invoice
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to purchase_url(@purchase), notice: "Purchase was successfully created." }
-        format.json { render :show, status: :created, location: @purchase }
+        format.html { redirect_to @invoice, notice: "Purchase was successfully created." }
+        format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
@@ -38,8 +30,8 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to purchase_url(@purchase), notice: "Purchase was successfully updated." }
-        format.json { render :show, status: :ok, location: @purchase }
+        format.html { redirect_to @invoice, notice: "Purchase was successfully updated." }
+        format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
@@ -52,7 +44,7 @@ class PurchasesController < ApplicationController
     @purchase.destroy
 
     respond_to do |format|
-      format.html { redirect_to purchases_url, notice: "Purchase was successfully destroyed." }
+      format.html { redirect_to @invoice, notice: "Purchase was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -62,7 +54,9 @@ class PurchasesController < ApplicationController
     def set_purchase
       @purchase = Purchase.find(params[:id])
     end
-
+    def set_invoice
+      @invoice = Invoice.find(params[:invoice_id])
+    end
     # Only allow a list of trusted parameters through.
     def purchase_params
       params.require(:purchase).permit(:name, :category, :quantity, :invoice_id, :price)

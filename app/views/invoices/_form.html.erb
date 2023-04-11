@@ -7,11 +7,11 @@
     <%= f.input :date %>
     <%= f.input :company %>
     <%= f.input :tax %>
-    <%= f.input :status_type %>
-    <%= f.association :employee %>
+    <%= f.association :employee, collection: Employee.order(:name), prompt: "Choose an Employee" %>
+    <%= f.select(:status_type, options_for_select([['PAID', 'PAID'], ['PENDING', 'PENDING']]), { prompt: 'Choose a Status' }, class: 'form-control') %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>
