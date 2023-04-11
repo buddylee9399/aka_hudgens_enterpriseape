@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: companies
+#
+#  id         :integer          not null, primary key
+#  manager    :string
+#  name       :string
+#  status     :string
+#  terms      :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  manager: MyString
+  status: MyString
+  terms: 1
+
+two:
+  name: MyString
+  manager: MyString
+  status: MyString
+  terms: 1

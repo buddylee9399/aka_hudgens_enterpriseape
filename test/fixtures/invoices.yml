@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id          :integer          not null, primary key
+#  company     :string
+#  date        :datetime
+#  status_type :string
+#  tax         :decimal(, )
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  employee_id :integer          not null
+#
+# Indexes
+#
+#  index_invoices_on_employee_id  (employee_id)
+#
+# Foreign Keys
+#
+#  employee_id  (employee_id => employees.id)
+#
+
+one:
+  date: 2023-04-10 17:48:29
+  company: MyString
+  tax: 9.99
+  status_type: MyString
+  employee: one
+
+two:
+  date: 2023-04-10 17:48:29
+  company: MyString
+  tax: 9.99
+  status_type: MyString
+  employee: two

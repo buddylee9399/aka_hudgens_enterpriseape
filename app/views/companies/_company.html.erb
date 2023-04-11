@@ -1,0 +1,9 @@
+<tr>
+  <td><%= company.name %></td>
+  <td><%= company.manager %></td>
+  <td><%= company.status %></td>
+  <td><%= company.terms %></td>
+  <td><%= link_to 'Show', company, class: 'btn btn-default' %></td>
+  <td><%= link_to 'Edit', edit_company_path(company), class: 'btn btn-default btn-success' %></td>
+  <td><%= button_to 'Destroy', company, method: :delete, class: 'btn btn-default btn-danger', data: { confirm: 'Are you sure?' } %></td>
+</tr>

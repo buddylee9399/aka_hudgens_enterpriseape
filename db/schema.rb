@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_10_185005) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_214950) do
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "manager"
+    t.string "status"
+    t.integer "terms"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "job_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.datetime "date"
+    t.string "company"
+    t.decimal "tax"
+    t.string "status_type"
+    t.integer "employee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_invoices_on_employee_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.integer "quantity"
+    t.integer "invoice_id", null: false
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_purchases_on_invoice_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -45,4 +84,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_185005) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "invoices", "employees"
+  add_foreign_key "purchases", "invoices"
 end

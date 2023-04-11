@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :employees
+  resources :companies do
+    collection {post :import}
+  end
+
+  resources :invoices do
+    resources :purchases, except: [:index, :show]
+  end
+
   root to: 'static_pages#index'
   
   get   'about', to: 'static_pages#about'
